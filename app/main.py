@@ -1,9 +1,10 @@
 from datetime import date
 
 from fastapi import FastAPI, HTTPException
+from app.routers.events import router as events_router
 
 app = FastAPI()
-
+app.include_router(events_router)
 
 @app.get("/day-of-week")
 def get_day_of_week(input_date: date):
@@ -31,3 +32,4 @@ def get_days_between(
         "end_date": end_date,
         "days_between": delta.days,
     }
+
